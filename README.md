@@ -1,2 +1,2 @@
 # java-concurrency-evolution
-Java demo using in talks to show concurrency techniques evolution
+Java restaurant using in talks to show concurrency techniques evolution
