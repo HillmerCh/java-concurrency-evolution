@@ -10,9 +10,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>15</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <java16.version>16</java16.version>
+        <maven.compiler.source>${java16.version}</maven.compiler.source>
+        <maven.compiler.target>${java16.version}</maven.compiler.target>
 
         <!--Logging-->
         <log4j.version>2.14.0</log4j.version>

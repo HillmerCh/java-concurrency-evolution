@@ -62,6 +62,21 @@ class TableOrderingServiceTest {
 	}
 
 
+	@Test
+	void mainLoom() {
+		TableOrderingService tableOrderingService = new TableOrderingService();
+		tableOrderingService.startFoodOrderPreparationAsyncConcurrentWithLoomAndVirtualThread( foodOrder );
+		sleep(20_000);
+	}
+
+	@Test
+	void mainLoom2() {
+		TableOrderingService tableOrderingService = new TableOrderingService();
+		tableOrderingService.startFoodOrderPreparationAsyncConcurrentWithLoomAndExecutors( foodOrder );
+		sleep(20_000);
+	}
+
+
 
 
 	private void sleep(long time) {

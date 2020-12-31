@@ -23,7 +23,7 @@ public class TableOrderingThreads implements Runnable {
 	void prepareFood() {
 		//LOGGER.info( "Preparing Food: " + food );
 		this.sleep();
-		LOGGER.info("Starting to prepare the drink: " + drink);
+		LOGGER.info("Starting to prepare the food: " + food);
 	}
 
 	void prepareDrink() {

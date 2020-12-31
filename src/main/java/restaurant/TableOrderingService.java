@@ -26,10 +26,6 @@ public class TableOrderingService{
 		}
 	}
 
-	//TODO Async: Orders come in and are prepared in the order they were received. Multiple order can be prepared at the same time (Concurrent/Async)
-	//THREAD donde, FUTURE, CF, LOOM
-
-
 	public void startFoodOrderPreparationAsyncConcurrentWithThreads(FoodOrder foodOrder){
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
 
@@ -108,6 +104,61 @@ public class TableOrderingService{
 		}
 
 	}
+
+
+
+
+	public void startFoodOrderPreparationAsyncConcurrentWithLoomAndVirtualThread(FoodOrder foodOrder) {
+
+		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
+
+		for(Drink drink:foodOrder.getDrinkList()){
+			/*DrinkBar drinkBar = new DrinkBar( drink);
+			Thread t = new Thread( drinkBar );
+			t.start();*/
+
+			Thread thread2 = Thread.builder()
+					.virtual()
+					.name("drinkBarThread")
+					.task(() -> this.prepareDrink( drink ))
+					.start();
+		}
+
+		for(Food food:foodOrder.getFoodList()){
+			/*FoodKitchen foodKitchen = new FoodKitchen( food);
+
+			Thread t = new Thread( foodKitchen );
+			t.start();*/
+
+			Thread thread = Thread.builder()
+					.virtual()
+					.name("foodThread")
+					.task(() -> this.cookFood( food ))
+					.start();
+		}
+
+
+
+	}
+
+
+	public void startFoodOrderPreparationAsyncConcurrentWithLoomAndExecutors(FoodOrder foodOrder) {
+		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
+		try (ExecutorService executor = Executors.newVirtualThreadExecutor()) {
+
+			for(Drink drink:foodOrder.getDrinkList()){
+				executor.execute(() -> this.prepareDrink( drink ));
+			}
+
+			for(Food food:foodOrder.getFoodList()){
+				executor.execute(() -> this.cookFood( food ));
+			}
+		}
+	}
+	//TODO Async: Orders come in and are prepared in the order they were received. Multiple order can be prepared at the same time (Concurrent/Async)
+	//THREAD donde, FUTURE, CF, LOOM
+
+
 
 	/*
 		public void updateFlightStatusAsyncWithFuture() {
