@@ -63,14 +63,14 @@ class TableOrderingServiceTest {
 
 
 	@Test
-	void mainLoom() {
+	void startFoodOrderPreparationAsyncConcurrentWithLoomAndVirtualThread() {
 		TableOrderingService tableOrderingService = new TableOrderingService();
 		tableOrderingService.startFoodOrderPreparationAsyncConcurrentWithLoomAndVirtualThread( foodOrder );
 		sleep(20_000);
 	}
 
 	@Test
-	void mainLoom2() {
+	void startFoodOrderPreparationAsyncConcurrentWithLoomAndExecutors() {
 		TableOrderingService tableOrderingService = new TableOrderingService();
 		tableOrderingService.startFoodOrderPreparationAsyncConcurrentWithLoomAndExecutors( foodOrder );
 		sleep(20_000);
