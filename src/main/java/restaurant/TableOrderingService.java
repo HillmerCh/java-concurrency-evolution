@@ -20,7 +20,7 @@ public class TableOrderingService{
 
 	private void prepareMenuItem(MenuItem menuItem){
 		this.sleep();
-		LOGGER.info(menuItem + " Is ready to serve");
+		LOGGER.info(menuItem + " is ready to serve");
 	}
 
 	private void sleep() {
@@ -31,7 +31,6 @@ public class TableOrderingService{
 			e.printStackTrace();
 		}
 	}
-
 
 	public void startFoodOrderPreparationAsyncConcurrentWithThreads(FoodOrder foodOrder){
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
@@ -65,7 +64,6 @@ public class TableOrderingService{
 
 	}
 
-
 	public void startFoodOrderPreparationAsyncConcurrentWithLoomAndVirtualThread(FoodOrder foodOrder) {
 
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
@@ -78,7 +76,6 @@ public class TableOrderingService{
 
 	}
 
-
 	public void startFoodOrderPreparationAsyncConcurrentWithLoomAndExecutors(FoodOrder foodOrder) {
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
 		try (ExecutorService executor = Executors.newVirtualThreadExecutor()) {
@@ -86,10 +83,6 @@ public class TableOrderingService{
 			for(MenuItem menuItem : foodOrder.getMenuItemList()){
 				executor.execute(() -> this.prepareMenuItem( menuItem ));
 			}
-
 		}
 	}
-
-
-
 }
