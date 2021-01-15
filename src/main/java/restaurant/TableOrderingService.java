@@ -46,10 +46,9 @@ public class TableOrderingService{
 
 	public void startFoodOrderPreparationAsyncBlockingFuture(FoodOrder foodOrder){
 
-		//ExecutorService executor = Executors.newSingleThreadExecutor();
-		ExecutorService executor = Executors.newFixedThreadPool( 2 );
-
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
+
+		ExecutorService executor = Executors.newFixedThreadPool( 2 );
 		foodOrder.getMenuItemList().forEach( menuItem -> executor.submit( ()-> this.prepareMenuItem( menuItem )));
 
 		LOGGER.info("Food order No.: " + foodOrder.getOrderNumber() + " is being prepared");
