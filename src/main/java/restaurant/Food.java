@@ -1,12 +1,13 @@
 package restaurant;
 
-public class Food {
+public class Food implements MenuItem {
 	private final String name;
 
 	public Food(String name) {
 		this.name = name;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
