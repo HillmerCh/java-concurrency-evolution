@@ -30,6 +30,7 @@ class TableOrderingServiceTest {
 		TableOrderingService tableOrderingService = new TableOrderingService();
 		tableOrderingService.startFoodOrderPreparationAsyncConcurrentWithThreads( foodOrder );
 		LOGGER.debug( "End testing invocation" );
+
 		sleep(20_000);//20 Seconds to see the logs
 	}
 
@@ -38,7 +39,7 @@ class TableOrderingServiceTest {
 	void startFoodOrderPreparationSyncBlockingFuture(){
 		LOGGER.debug( "Starting testing invocation" );
 		TableOrderingService tableOrderingService = new TableOrderingService();
-		tableOrderingService.startFoodOrderPreparationAsyncBlockingFuture( foodOrder );
+		tableOrderingService.startFoodOrderPreparationAsyncNotBlockingFuture( foodOrder );
 		LOGGER.debug( "End testing invocation" );
 		sleep(20_000);//20 Seconds to see the logs
 

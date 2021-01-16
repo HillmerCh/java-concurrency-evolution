@@ -17,12 +17,10 @@ public class TableOrderingService{
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
 		foodOrder.getMenuItemList().forEach( this::prepareMenuItem );
 	}
-
 	private void prepareMenuItem(MenuItem menuItem){
 		this.sleep();
 		LOGGER.info(menuItem + " is ready to serve");
 	}
-
 	private void sleep() {
 		try {
 			Random r = new Random();
@@ -44,9 +42,10 @@ public class TableOrderingService{
 
 	}
 
-	public void startFoodOrderPreparationAsyncBlockingFuture(FoodOrder foodOrder){
+	public void startFoodOrderPreparationAsyncNotBlockingFuture(FoodOrder foodOrder){
 
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
+
 
 		ExecutorService executor = Executors.newFixedThreadPool( 2 );
 		foodOrder.getMenuItemList().forEach( menuItem -> executor.submit( ()-> this.prepareMenuItem( menuItem )));
@@ -58,7 +57,13 @@ public class TableOrderingService{
 	public void startFoodOrderPreparationAsyncConcurrentWithCompletableFuture(FoodOrder foodOrder){
 
 		LOGGER.info("Starting to prepare the order No.: " + foodOrder.getOrderNumber());
-		foodOrder.getMenuItemList().forEach( menuItem-> CompletableFuture.runAsync( ()-> this.prepareMenuItem( menuItem )));
+		foodOrder.getMenuItemList().forEach( menuItem->
+		 CompletableFuture
+				 .runAsync( ()-> this.prepareMenuItem( menuItem ))
+		)
+
+
+		;
 		LOGGER.info("Food order No.: " + foodOrder.getOrderNumber() + " is being prepared");
 
 	}
