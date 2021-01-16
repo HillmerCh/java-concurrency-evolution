@@ -1,6 +1,7 @@
 # Java Concurrency Evolution
 
-This repo contains the demo used for the Talk "Of concurrency and other demons" at Daswcon 2021
+This repo contains the demo used for the Talk "Of concurrency and other demons" at Daswcon 2021. 
+It uses `java.lang.Thread`, `java.util.concurrent.Future`, `java.util.concurrent.CompletableFuture` and Virtual threads ( `Executors.newVirtualThreadExecutor()` from **_Loom Project_**) 
 
 ## Requirements
 
